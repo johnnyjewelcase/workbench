@@ -1,5 +1,12 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: whitesmoke;
+  background-color: darkslategrey;
+}
+
+a {
+  color: white;
+  font-size: small;
 }
 
 .phonetic {
