@@ -1,0 +1,11 @@
+"Boo The Dog Fan Page!" title is missing the <h1> tag.
+About Boo section is missing <p> tags.
+About Boo section is poorly written.
+Wikipedia link doesn't have a URL in the href value.
+Image tag is missing the surrounding < and />.
+HTML is looking for a javascript file called errors.js instead of logic.js.
+Array of Boo facts needs more quotation marks to separate individual facts.
+Ordered list items are missing <li> tags.
+Orange, Pink, and Green buttons have the wrong id values.
+"Pink" needs to be in quotation marks in the javascript css reference.
+"Click" needs to be in quotation marks in the javascript on click function.

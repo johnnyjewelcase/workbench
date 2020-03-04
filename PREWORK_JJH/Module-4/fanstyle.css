@@ -1,0 +1,16 @@
+#lt {
+  font-weight: lighter;
+}
+
+h2 {
+  color: palevioletred;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table {
+  border-width: medium;
+  border-style: dashed;
+}

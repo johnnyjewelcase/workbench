@@ -1,0 +1,50 @@
+#p01 {
+  text-align: center;
+}
+
+#p02 {
+  color: red;
+}
+
+#p03 {
+  color: blue;
+}
+
+#p04 {
+  color: green;
+}
+
+#p05 {
+  font-size: 200%;
+}
+
+#p06 {
+  font-size: 50%;
+}
+
+#p07 {
+  font-weight: bold;
+}
+
+#p08 {
+  font-family: "Courier New", Courier, monospace;
+}
+
+#p09 {
+  color: orange;
+  font-size: 200%;
+  font-weight: bold;
+}
+
+.styledFont {
+  color: green;
+  font-size: 90%;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#styledImage {
+  border-width: thick;
+  border-style: dotted;
+  border-color: purple;
+}
