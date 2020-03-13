@@ -13,50 +13,89 @@
       crossorigin="anonymous"
     />
     <script
-      src="https://kit.fontawesome.com/65e849c4e6.js"
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>About Me</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </nav>
+    <div id="bigc" class="container-sm">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a id="myName" class="navbar-brand" href="#"><h2>Jared Hennessy</h2></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./portfolio.html">Portfolio</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="page-header">
-            <h1>About Me</h1>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <img src="assets/images/20190718.png" class="img-fluid" />
+      <article class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="page-header">
+              <h1>About Me</h1>
+              <hr />
             </div>
-            <div class="col-md-9">
-              <i class="fas fa-rocket"></i>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque lacinia non mi eget eleifend. Sed vehicula risus a
-              nunc blandit, nec vehicula nisl placerat. Mauris tempor diam nec
-              finibus vestibulum. Aenean tristique dapibus orci, ut fringilla
-              metus rhoncus in. Aliquam vitae dignissim nisi, id feugiat diam.
-              Etiam ac tempor dui. Phasellus sodales odio ut lobortis commodo.
+            <div class="row">
+              <div class="col-md-3">
+                <img src="./assets/images/20190718.png" class="img-fluid" />
+                <img src="./assets/images/black_thread.png" class="img-fluid" />
+              </div>
+              <div class="col-md-9">
+                <i class="fas fa-rocket"></i>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Pellentesque lacinia non mi eget eleifend. Sed vehicula risus
+                  a nunc blandit, nec vehicula nisl placerat. Mauris tempor diam
+                  nec finibus vestibulum. Aenean tristique dapibus orci, ut
+                  fringilla metus rhoncus in. Aliquam vitae dignissim nisi, id
+                  feugiat diam. Etiam ac tempor dui. Phasellus sodales odio ut
+                  lobortis commodo.
+                </p>
+                <p>
+                  Acclaimed texter, pub trivia participant, marathon completer.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </article>
+
+      <footer>
+        <hr id="hrfooter" />
+        <div class="footer-copyright text-center">© Copyright</div>
+      </footer>
     </div>
   </body>
 </html>
