@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPS</title>
+  </head>
+  <body>
+    <script>
+      var wins = 0;
+      var losses = 0;
+      var ties = 0;
+
+      for (var i = 0; i < 2; i++) {
+        var move = prompt("Let's Play Rock, Paper, Scissors.");
+        var num = Math.floor(Math.random() * 3);
+        var rps = ["r", "p", "s"];
+
+        if (rps[num] === move) {
+          alert("Tie! The computer chose " + rps[num]);
+          ties = ties + 1;
+        }
+
+        if (rps[num] === "r" && move === "p") {
+          alert("You win! The computer chose " + rps[num]);
+          wins = wins + 1;
+        }
+
+        if (rps[num] === "s" && move === "r") {
+          alert("You win! The computer chose " + rps[num]);
+          wins = wins + 1;
+        }
+
+        if (rps[num] === "p" && move === "s") {
+          alert("You win! The computer chose " + rps[num]);
+          wins = wins + 1;
+        }
+
+        if (rps[num] === "p" && move === "r") {
+          alert("You lose! The computer chose " + rps[num]);
+          losses = losses + 1;
+        }
+
+        if (rps[num] === "s" && move === "p") {
+          alert("You lose! The computer chose " + rps[num]);
+          losses = losses + 1;
+        }
+
+        if (rps[num] === "r" && move === "s") {
+          alert("You lose! The computer chose " + rps[num]);
+          losses = losses + 1;
+        }
+
+        alert(
+          "Your wins: " +
+            wins +
+            ", your losses: " +
+            losses +
+            ", your ties: " +
+            ties
+        );
+      }
+      alert(
+        "Game over! Your wins: " +
+          wins +
+          ", your losses: " +
+          losses +
+          ", your ties: " +
+          ties
+      );
+      var again = confirm("Do you want to play again?");
+      if ((again = true)) {
+        i = 0;
+        wins = 0;
+        losses = 0;
+        ties = 0;
+        //     reset();
+      }
+    </script>
+  </body>
+</html>
