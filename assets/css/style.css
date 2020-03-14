@@ -5,13 +5,9 @@ body {
   background-repeat: repeat;
 }
 
-h1,
-h2 {
+h1 {
   font-family: "Georgia", Times, Times New Roman, serif;
   font-weight: bold;
-}
-
-h1 {
   color: #4aaaa5;
 }
 
@@ -22,10 +18,9 @@ h1 {
 .navbar-brand {
   background-color: #4aaaa5;
   padding: 10px;
-}
-
-#myName {
   color: #ffffff;
+  font-family: "Georgia", Times, Times New Roman, serif;
+  font-size: xx-large;
 }
 
 .short-text {
@@ -39,6 +34,21 @@ h1 {
   .full-text {
     display: none;
   }
+}
+
+article {
+  background-color: white;
+  margin: 40px;
+  padding: 20px;
+  padding-left: 20px;
+}
+
+p {
+  padding: 20px;
+}
+
+p::first-line {
+  font-size: large;
 }
 
 #myFace {
@@ -58,17 +68,6 @@ h1 {
   padding: 10px;
   max-width: 250px;
   max-height: 250px;
-}
-
-article {
-  background-color: white;
-  margin: 40px;
-  padding: 20px;
-  padding-left: 20px;
-}
-
-p {
-  padding: 20px;
 }
 
 footer {
