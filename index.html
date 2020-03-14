@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -30,10 +30,15 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>About Me</title>
   </head>
-  <body>
-    <div id="bigc" class="container-sm">
+  <body class="d-flex flex-column h-100">
+    <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="myName" class="navbar-brand" href="#"><h2>Jared Hennessy</h2></a>
+        <span id="myName" class="navbar-brand full-text"
+          ><h2>Jared Hennessy</h2></span
+        >
+        <span id="myName" class="navbar-brand short-text"
+          ><h2>J Hennessy</h2></span
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -59,43 +64,35 @@
           </ul>
         </div>
       </nav>
+    </header>
 
-      <article class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="page-header">
-              <h1>About Me</h1>
-              <hr />
-            </div>
-            <div class="row">
-              <div class="col-md-3">
-                <img src="./assets/images/20190718.png" class="img-fluid" />
-                <img src="./assets/images/black_thread.png" class="img-fluid" />
-              </div>
-              <div class="col-md-9">
-                <i class="fas fa-rocket"></i>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque lacinia non mi eget eleifend. Sed vehicula risus
-                  a nunc blandit, nec vehicula nisl placerat. Mauris tempor diam
-                  nec finibus vestibulum. Aenean tristique dapibus orci, ut
-                  fringilla metus rhoncus in. Aliquam vitae dignissim nisi, id
-                  feugiat diam. Etiam ac tempor dui. Phasellus sodales odio ut
-                  lobortis commodo.
-                </p>
-                <p>
-                  Acclaimed texter, pub trivia participant, marathon completer.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+    <main class="flex-shrink-0" role="main">
+      <div class="col-md-10">
+        <article class="container-fluid">
+          <h1>About Me</h1>
+          <hr />
+          <p>
+            <img
+              id="myFace"
+              src="./assets/images/20190718.png"
+              class="img-fluid"
+            />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque lacinia non mi eget eleifend. Sed vehicula risus a nunc
+            blandit, nec vehicula nisl placerat. Mauris tempor diam nec finibus
+            vestibulum. Aenean tristique dapibus orci, ut fringilla metus
+            rhoncus in. Aliquam vitae dignissim nisi, id feugiat diam. Etiam ac
+            tempor dui. Phasellus sodales odio ut lobortis commodo.
+            <br />
+            <br />
+            Acclaimed texter, pub trivia participant, marathon completer.
+          </p>
+        </article>
+      </div>
+    </main>
 
-      <footer>
-        <hr id="hrfooter" />
-        <div class="footer-copyright text-center">© Copyright</div>
-      </footer>
-    </div>
+    <footer class="footer mt-auto py-3">
+      <div class="footer-copyright text-center">© Copyright</div>
+    </footer>
   </body>
 </html>

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Contact</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -29,11 +28,17 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Contact</title>
   </head>
-  <body>
-    <div class="container-sm">
+  <body class="d-flex flex-column h-100">
+    <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="myName" class="navbar-brand" href="#"><h2>Jared Hennessy</h2></a>
+        <span id="myName" class="navbar-brand full-text"
+          ><h2>Jared Hennessy</h2></span
+        >
+        <span id="myName" class="navbar-brand short-text"
+          ><h2>J Hennessy</h2></span
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -45,22 +50,65 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Contact</a>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./portfolio.html">Portfolio</a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <a class="nav-link" href="./index.html">About</a>
             </li>
           </ul>
         </div>
       </nav>
-      <div id="bgbox" class="container-sm"></div>
-    </div>
+    </header>
+
+    <main class="flex-shrink-0" role="main">
+      <div class="col-md-8">
+        <article class="container-fluid">
+          <h1>Contact</h1>
+          <hr />
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput2">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleFormControlInput2"
+                placeholder="Email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput3">Name</label>
+              <textarea
+                class="form-control"
+                id="exampleFormControlInput3"
+                rows="3"
+                placeholder="Message"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-teal">
+              Submit
+            </button>
+          </form>
+        </article>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+      <div class="footer-copyright text-center">© Copyright</div>
+    </footer>
   </body>
 </html>

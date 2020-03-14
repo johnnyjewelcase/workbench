@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>Portfolio</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
@@ -35,8 +28,65 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Portfolio</title>
   </head>
-  <body>
-    <h1>Portfolio</h1>
+  <body class="d-flex flex-column h-100">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span id="myName" class="navbar-brand full-text"
+          ><h2>Jared Hennessy</h2></span
+        >
+        <span id="myName" class="navbar-brand short-text"
+          ><h2>J Hennessy</h2></span
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link " href="./contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-shrink-0" role="main">
+      <div class="col-md-8">
+        <article class="container-fluid">
+          <h1>Portfolio</h1>
+          <hr />
+
+          <img class="pfpic" src="http://placeimg.com/350/350/nature" />
+
+          <img class="pfpic" src="http://placeimg.com/350/350/arch" />
+
+          <img class="pfpic" src="http://placeimg.com/350/350/animals" />
+
+          <img class="pfpic" src="http://placeimg.com/350/350/tech" />
+
+          <img class="pfpic" src="./assets/images/gtr.JPG" />
+        </article>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+      <div class="footer-copyright text-center">© Copyright</div>
+    </footer>
   </body>
 </html>
