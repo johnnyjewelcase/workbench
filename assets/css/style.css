@@ -13,6 +13,7 @@ h1 {
 
 .navbar {
   padding: 0px;
+  padding-right: 10px;
 }
 
 .navbar-light .navbar-brand {
