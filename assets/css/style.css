@@ -15,7 +15,7 @@ h1 {
   padding: 0px;
 }
 
-.navbar-brand {
+.navbar-light .navbar-brand {
   background-color: #4aaaa5;
   padding: 10px;
   color: #ffffff;
@@ -45,10 +45,6 @@ article {
 
 p {
   padding: 20px;
-}
-
-p::first-line {
-  font-size: large;
 }
 
 #myFace {
