@@ -31,28 +31,28 @@ function generatePassword() {
   // POPULATE ARRAY FROM ASCII REFERENCE: https://www.w3schools.com/charsets/ref_html_ascii.asp
   var chars = [];
   if (useLower === true) {
-    console.log("lowercase letters selected")
+    console.log("lowercase letters selected");
     // chars = chars.concat(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]);
     for (var l = 97; l <= 122; l++) {
       chars = chars.concat(String.fromCharCode(l));
     }
   }
   if (useUpper === true) {
-    console.log("uppercase letters selected")
+    console.log("uppercase letters selected");
     // chars = chars.concat(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]);
     for (var u = 65; u <= 90; u++) {
       chars = chars.concat(String.fromCharCode(u));
     }
   }
   if (useNumber === true) {
-    console.log("numbers selected")
+    console.log("numbers selected");
     // chars = chars.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
     for (var n = 48; n <= 57; n++) {
       chars = chars.concat(String.fromCharCode(n));
     }
   }
   if (useSpecial === true) {
-    console.log("special characters selected")
+    console.log("special characters selected");
     // chars = chars.concat(["!", "\\", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"]);
     for (var s1 = 33; s1 <= 47; s1++) {
       chars = chars.concat(String.fromCharCode(s1));
