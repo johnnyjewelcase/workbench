@@ -4,31 +4,38 @@ function generatePassword() {
   /****
    * WRITE YOUR CODE HERE
    */
+
+  // Once the user clicks "Generate Password" button, they are prompted to provide the length of their desired password.
   var pwLength = prompt("Create a password. How many characters long?");
 
+  // The password length is checked for various issues, and the user is given the appropriate feedback if necessary.
+  // 1: Letters are not allowed.
   if (isNaN(pwLength)) {
     return ("Please enter a number!");
+    // 2: Decimals are not allowed.
   } else if ((parseFloat(pwLength) - parseInt(pwLength)) !== 0) {
     return ("Please enter a whole number!");
-  } else if (pwLength < 8) {
-    return ("Passwords must have at least eight characters!");
-  } else if (pwLength > 128) {
-    return ("Passwords cannot be longer than 128 characters!");
+    // 3: The password length must be within this range.
+  } else if (pwLength < 8 || pwLength > 128) {
+    return ("Passwords must be between 8 and 128 characters!");
   } else {
+    // Password lengths that pass the above tests are converted to an integer.
+    console.log("selected password length: " + pwLength);
     pwLength = parseInt(pwLength);
   }
 
+  // The user is prompted for which character sets to include for inclusion in the password.
   var useLower = confirm("Include lowercase letters?");
   var useUpper = confirm("Include uppercase letters?");
   var useNumber = confirm("Include numbers?");
   var useSpecial = confirm("Include special characters?");
 
+  // The user is alerted if they failed to select any character sets.
   if (useLower === false && useUpper === false && useNumber === false && useSpecial === false) {
-    alert("You haven't picked any characters to choose from!");
-    return;
+    return ("You haven't picked any characters to choose from!");
   }
 
-  // POPULATE ARRAY FROM ASCII REFERENCE: https://www.w3schools.com/charsets/ref_html_ascii.asp
+  // Concatenate selected characters into an array by looping through the ASCII values in that set (ASCII REFERENCE: https://www.w3schools.com/charsets/ref_html_ascii.asp)
   var chars = [];
   if (useLower === true) {
     console.log("lowercase letters selected");
@@ -62,25 +69,28 @@ function generatePassword() {
     }
   }
 
-  var password = "";
   console.log("possible character array:");
   console.log(chars);
-  console.log("selected pw length: " + pwLength);
 
+  // Randomly select a number, pull the corresponding value from the array of possible characters, and add it to the end of the password variable. Repeat until the user-selected length has been met.
+  var password = "";
   for (var i = 1; i < (pwLength + 1); i++) {
     var randomNumInRange = Math.floor(Math.random() * (chars.length));
     password = password + chars[randomNumInRange];
 
+    // Check to make sure 'undefined' and other unwanted characters didn't make it into the array.
     if (chars[randomNumInRange].length > 1) {
       console.log("INVALID GENERATED IN THIS LOOP: " + chars[randomNumInRange]);
       break;
     }
   }
 
+  // Check to make sure the loop didn't end prematurely because I forgot how to count again.
   if (pwLength > password.length) {
     return ("Oops. We didn't make a long enough password. Try Again.");
   }
 
+  // Send the password variable to the screen.
   console.log(password);
   return (password);
 }
