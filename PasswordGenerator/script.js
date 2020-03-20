@@ -80,7 +80,7 @@ function generatePassword() {
 
     // Check to make sure 'undefined' and other unwanted characters didn't make it into the array.
     if (chars[randomNumInRange].length > 1) {
-      console.log("INVALID GENERATED IN THIS LOOP: " + chars[randomNumInRange]);
+      console.log("INVALID CHARACTER SELECTED: " + chars[randomNumInRange]);
       break;
     }
   }
