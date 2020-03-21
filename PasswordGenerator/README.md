@@ -28,3 +28,6 @@
     1. Repeat until the user-selected password length has been met.
 1.  The password length is checked to make sure that the loop didn't end prematurely.
 1.  The generated password is returned from the query and written to the page.
+1.  Once the password is generated, if the user clicks the _Copy to Clipboard_ button:
+    1. Call the function to find the password, select the text, and copy it to the clipboard.
+    1. Alert the user that the password has been copied.

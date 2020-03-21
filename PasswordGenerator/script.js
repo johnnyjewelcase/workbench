@@ -95,6 +95,25 @@ function generatePassword() {
   return (password);
 }
 
+// Locate the new "Copy to Clipboard" button in the html.
+var copyBtn = document.querySelector("#clipboard");
+
+// Create a function to copy the generated password to the clipboard.
+function copyPassword() {
+  // Assign the generated password to a variable and select the text.
+  var copyText = document.getElementById("password");
+
+  copyText.select();
+
+  // Copy selected text and alert user that it has been done.
+  document.execCommand("copy");
+
+  alert("Password copied to clipboard.");
+}
+
+// Call the approrpriate function when the "Copy to Clipboard" button is clicked.
+copyBtn.addEventListener("click", copyPassword);
+
 //////////////////////////////////////////////////////////////
 // DO NOT TOUCH THE CODE BELOW
 //////////////////////////////////////////////////////////////
