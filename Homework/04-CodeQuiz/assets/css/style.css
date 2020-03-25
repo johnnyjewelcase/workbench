@@ -1,0 +1,10 @@
+.navbar-end {
+    padding: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    background-color: black;
+}
