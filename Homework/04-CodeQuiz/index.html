@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./assets/css/reset.css" />
-    <link rel="stylesheet" href="./assets/css/bulma.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Code Quiz</title>
 
     <!-- TO DO  
-        add bulma progress bar as timer
-        add bulma / font awesome icons to indicate right or wrong answers
+        add progress bar as timer?
+        add font awesome icons to indicate right or wrong answers?
         quiz questions: https://www.geeksforgeeks.org/javascript-quiz-set-1/
     -->
   </head>
@@ -22,9 +27,7 @@
           View High Scores
         </a>
       </p>
-      <p class="level-item">
-        timer goes here
-      </p>
+      <p id="timer" class="level-item"></p>
     </nav>
 
     <div class="container is-fluid">
@@ -37,31 +40,24 @@
     </div>
     <br />
     <div class="container is-fluid">
-      <nav id="btnStart" class="level">
-        <button class="level-item button is-rounded is-success">
-          Start Quiz
-        </button>
-      </nav>
-      <nav id="btn1" class="level response">
-        <button class="level-item button is-rounded is-primary">
-          button 1
-        </button>
-      </nav>
-      <nav id="btn2" class="level response">
-        <button class="level-item button is-rounded is-primary">
-          button 2
-        </button>
-      </nav>
-      <nav id="btn3" class="level response">
-        <button class="level-item button is-rounded is-primary">
-          button 3
-        </button>
-      </nav>
-      <nav id="btn4" class="level response">
-        <button class="level-item button is-rounded is-primary">
-          button 4
-        </button>
-      </nav>
+      <button id="btnStart" type="button" class="btn btn-success">
+        Start Quiz
+      </button>
+      <button id="btn1" type="button" class="btn response">
+        button 1
+      </button>
+      <br />
+      <button id="btn2" type="button" class="btn response">
+        button 2
+      </button>
+      <br />
+      <button id="btn3" type="button" class="btn response">
+        button 3
+      </button>
+      <br />
+      <button id="btn4" type="button" class="btn response">
+        button 4
+      </button>
     </div>
     <script src="./assets/script.js"></script>
   </body>

@@ -2,6 +2,11 @@
     padding: 10px;
 }
 
+.response {
+    background-color: purple;
+    color: white;
+}
+
 #btn1 {
     display: none
 }

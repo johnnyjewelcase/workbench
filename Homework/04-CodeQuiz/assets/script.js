@@ -1,39 +1,55 @@
+// You will need to use `setInterval` for the timer.
+// You will need to use `localStorage`. What is the part of app that needs to persist?
+// You will need use event delegation.
+// The Week 4 ToDo's application (`28-Stu_Local-Storage-Todos`) has examples of `localStorage` and event delegation.
 var body = document.querySelector('body');
+var timerEl = document.querySelector('#timer');
 var qText = document.querySelector('#qText');
 var introP = document.querySelector('#introP');
 var responses = document.querySelectorAll('.response');
 var btnStart = document.querySelector('#btnStart');
-// var btn1 = document.querySelector('#btn1');
-// var btn2 = document.querySelector('#btn2');
-// var btn3 = document.querySelector('#btn3');
-// var btn4 = document.querySelector('#btn4');
+var btn1 = document.querySelector('#btn1');
 
 var q1 = {
     question: 'Coding Quiz'
 };
-
 var q2 = {
     question: 'What is the HTML tag under which one can write the JavaScript code?',
-    btn1: '<code><javascript></code>',
-    btn2: '<code><scripted></code>',
-    btn3: '<code><script></code>',
-    btn4: '<code><js></code>',
+    btn1: '<javascript>',
+    btn2: '<scripted>',
+    btn3: '<script>',
+    btn4: '<js>',
     answer: 'btn3'
 };
-
 var q3 = {
-    question: 'Choose the correct JavaScript syntax to change the content of the following HTML code:<br \> <code>&lt;p id=\'geek\'&gt;GeeksforGeeks&lt;/p&gt;</code>',
-    btn1: '<code>document.getElement(“geek”).innerHTML=”I am a Geek”;</code>',
-    btn2: '<code>document.getElementById(“geek”).innerHTML=”I am a Geek”;</code>',
-    btn3: '<code>document.getId(“geek”)=”I am a Geek”;</code>',
-    btn4: '<code> document.getElementById(“geek”).innerHTML=I am a Geek;</code>',
+    question: 'Choose the correct JavaScript syntax to change the content of the following HTML code:<br \> &lt;p id=\'geek\'&gt;GeeksforGeeks&lt;/p&gt;',
+    btn1: 'document.getElement(“geek”).innerHTML=”I am a Geek”;',
+    btn2: 'document.getElementById(“geek”).innerHTML=”I am a Geek”;',
+    btn3: 'document.getId(“geek”)=”I am a Geek”;',
+    btn4: ' document.getElementById(“geek”).innerHTML=I am a Geek;',
     answer: 'btn2'
 };
 
 var quiz = [];
 quiz.push(q1, q2, q3);
 var q = 0;
-var score = 0;
+
+function countDown() {
+    var timeLeft = 3;
+
+    var timeInterval = setInterval(function () {
+        timerEl.textContent = timeLeft + " seconds remaining";
+        timeLeft--;
+
+        if (timeLeft === 0) {
+            localStorage.setItem("timeLeft", timeLeft);
+            timerEl.textContent = "";
+            completeQuiz();
+            clearInterval(timeInterval);
+        }
+
+    }, 1000);
+}
 
 btnStart.addEventListener('click', function () {
     introP.style.display = 'none';
@@ -42,41 +58,18 @@ btnStart.addEventListener('click', function () {
         responses[i].style.display = 'flex';
     }
     nextQuestion();
+    // countDown();
 });
 
-
 body.addEventListener('click', function () {
-    console.log(event.target.parentNode);
-    if (event.target.parentNode.className !== 'level response') {
+    if (event.target.className !== 'btn response') {
         return;
     }
-    checkAnswer(event.target.parentNode.id);
+    checkAnswer(event.target.id);
     nextQuestion();
 });
 
-// btn1.addEventListener('click', function () {
-//     correctAnswer(this.id);
-//     nextQuestion();
-// });
-
-// btn2.addEventListener('click', function () {
-//     correctAnswer(this.id);
-//     nextQuestion();
-// });
-
-// btn3.addEventListener('click', function () {
-//     correctAnswer(this.id);
-//     nextQuestion();
-// });
-
-// btn4.addEventListener('click', function () {
-//     correctAnswer(this.id);
-//     nextQuestion();
-// });
-
 function checkAnswer(choice) {
-    console.log(choice);
-    console.log(quiz[q].answer);
     if (choice == quiz[q].answer) {
         alert("yep");
     } else {
@@ -88,10 +81,21 @@ function nextQuestion() {
     q++;
     if (q < quiz.length) {
         qText.innerHTML = quiz[q].question;
+        btn1.textContent = quiz[q].btn1;
+        btn2.textContent = quiz[q].btn2;
+        btn3.textContent = quiz[q].btn3;
+        btn4.textContent = quiz[q].btn4;
     } else {
-        qText.innerHTML = "QUIZ COMPLETE";
-        for (i = 0; i < responses.length; i++) {
-            responses[i].style.display = 'none';
-        }
+        completeQuiz();
     }
+}
+
+function completeQuiz() {
+    // event.preventDefault();
+    var score = localStorage.getItem("timeLeft");
+    qText.innerHTML = "QUIZ COMPLETE " + score;
+    for (i = 0; i < responses.length; i++) {
+        responses[i].style.display = 'none';
+    }
+
 }
