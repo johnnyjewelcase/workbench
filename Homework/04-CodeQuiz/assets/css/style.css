@@ -2,9 +2,18 @@
     padding: 10px;
 }
 
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    background-color: black;
+#btn1 {
+    display: none
+}
+
+#btn2 {
+    display: none
+}
+
+#btn3 {
+    display: none
+}
+
+#btn4 {
+    display: none
 }

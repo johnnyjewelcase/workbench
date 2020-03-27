@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/bulma.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-
     <title>Code Quiz</title>
 
     <!-- TO DO  
         add bulma progress bar as timer
         add bulma / font awesome icons to indicate right or wrong answers
+        quiz questions: https://www.geeksforgeeks.org/javascript-quiz-set-1/
     -->
   </head>
   <body>
@@ -21,45 +22,42 @@
           View High Scores
         </a>
       </p>
-
       <p class="level-item">
         timer goes here
       </p>
     </nav>
 
     <div class="container is-fluid">
-      <h3 class="subtitle is-3">Coding Quiz</h3>
-      <p>
+      <h3 id="qText" class="subtitle is-3">Coding Quiz</h3>
+      <p id="introP">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu lacinia
         dolor. Duis accumsan enim massa, in tempor neque iaculis nec. Quisque
-        tempor nisl in erat consequat, nec ornare elit porttitor. Integer
-        euismod lobortis est pellentesque imperdiet. Nunc tincidunt massa massa,
-        vitae cursus purus euismod vitae. Morbi suscipit turpis eu diam pretium
-        porttitor. Duis efficitur leo et lectus feugiat lacinia. Proin eget
-        rhoncus nulla, sit amet consectetur purus. Nunc molestie dui at augue
-        interdum interdum. Quisque vehicula sem sit amet metus volutpat, vel
-        maximus sapien vulputate. Phasellus eget venenatis magna. Quisque ut
-        justo quam. Curabitur elementum convallis magna at accumsan.
+        tempor nisl in erat consequat, nec ornare elit porttitor.
       </p>
     </div>
     <br />
     <div class="container is-fluid">
-      <nav id="button1" class="level">
-        <button class="level-item button is-rounded is-primary">
+      <nav id="btnStart" class="level">
+        <button class="level-item button is-rounded is-success">
           Start Quiz
         </button>
       </nav>
-      <nav id="button2" class="level">
+      <nav id="btn1" class="level response">
+        <button class="level-item button is-rounded is-primary">
+          button 1
+        </button>
+      </nav>
+      <nav id="btn2" class="level response">
         <button class="level-item button is-rounded is-primary">
           button 2
         </button>
       </nav>
-      <nav id="button3" class="level">
+      <nav id="btn3" class="level response">
         <button class="level-item button is-rounded is-primary">
           button 3
         </button>
       </nav>
-      <nav id="button4" class="level">
+      <nav id="btn4" class="level response">
         <button class="level-item button is-rounded is-primary">
           button 4
         </button>
