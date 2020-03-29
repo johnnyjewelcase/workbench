@@ -20,7 +20,7 @@ var elForm = document.querySelector('#intialsForm');
 var elInitials = document.querySelector('#intialsInput');
 var elScoreBody = document.querySelector('#scoreBody');
 
-// Store text required for each 'page' of the quiz in an object.
+// Store text required for each of the quiz's questions in their own object.
 var q1 = {
     question: '#1 What is the HTML tag under which one can write the JavaScript code?',
     ans1: '<code>&ltjavascript&gt</code>',
@@ -65,24 +65,27 @@ var q5 = {
     correct: 'res3'
 };
 
-// Store each 'page' object in an array; initialize the page counter.
+// Store all of the question page objects in an array.
 var quiz = [];
 quiz.push(q1, q2, q3, q4, q5);
-var q = -1;
 
-// Inititalize quiz duration and time interval in a variable
+// Declare variables to keep track of where we are.
+var state;
+var q;
+
+// Declare variables for the quiz duration and the current time interval.
 var timeLeft;
 var timeInterval;
 
-// Initialize some variables for scorekeeping purposes.
+// Declare variables for scorekeeping purposes.
 var initials;
 var score;
 var rightAnswers;
+var scoreboard = [];
 
 // Create a function to reset the quiz back to start.
-var state = 'start';
-
 function startPage() {
+    state = 'start';
     elStart.style.display = 'block';
     elQuiz.style.display = 'none';
     elTimer.style.display = 'none';
@@ -98,10 +101,6 @@ function startPage() {
     state = 'start';
 }
 startPage();
-
-// Initialize scoreboard
-var scoreboard = [];
-localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
 
 // Create a function to operate the timer, to be called at the beginning of the quiz.
 function countDown() {
