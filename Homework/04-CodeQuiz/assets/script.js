@@ -74,8 +74,11 @@ var q = -1;
 // Inititalize quiz duration and time interval in a variable
 var timeLeft;
 var timeInterval;
+
+// Initialize some variables for scorekeeping purposes.
 var initials;
 var score;
+var rightAnswers;
 
 // Create a function to reset the quiz back to start.
 var state = 'start';
@@ -92,6 +95,7 @@ function startPage() {
     timeLeft = 45;
     score = -1;
     initials = '';
+    rightAnswers = 0;
     state = 'start';
 }
 startPage();
@@ -157,7 +161,7 @@ function completeQuiz() {
     elScores.style.display = 'none';
     elSwitch.textContent = 'Retake the Quiz';
     state = 'finish';
-    elFinalScore.innerHTML = 'Quiz Complete! Your final score is ' + score + '.';
+    elFinalScore.innerHTML = 'Quiz Complete! Your final score is ' + score + '.<br/>You answered ' + rightAnswers + ' out of 5 questions correctly.';
 }
 
 // Add listener to all 'response' buttons to wait for user selection.
@@ -177,6 +181,7 @@ function checkAnswer(choice) {
         console.log('right');
         elCheck.style.color = 'green';
         elCheck.innerHTML = '<strong>Correct!</strong>';
+        rightAnswers++;
     } else {
         console.log('bzzt wrongo');
         elCheck.style.color = 'red';
