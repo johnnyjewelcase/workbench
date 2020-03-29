@@ -15,50 +15,111 @@
     <title>Code Quiz</title>
 
     <!-- TO DO  
-        add progress bar as timer?
-        add font awesome icons to indicate right or wrong answers?
-        quiz questions: https://www.geeksforgeeks.org/javascript-quiz-set-1/
-    -->
+      highlight correct answer
+      add progress bar as timer?
+      add font awesome icons to indicate right or wrong answers?
+      store counts of right & wrong answers and display at end?
+      quiz questions: https://www.geeksforgeeks.org/javascript-quiz-set-1/
+        -->
   </head>
   <body>
-    <nav class="level">
-      <p class="level-item">
-        <a href="./scores.html">
-          View High Scores
-        </a>
-      </p>
-      <p id="timer" class="level-item"></p>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a id="switch" class="navbar-brand mr-auto" >
+        View the Scoreboard
+      </a>
+      <a id="timer" class="navbar-brand ml-auto"> </a>
     </nav>
+    <div id="spacer"><p></p></div>
 
-    <div class="container is-fluid">
-      <h3 id="qText" class="subtitle is-3">Coding Quiz</h3>
-      <p id="introP">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu lacinia
-        dolor. Duis accumsan enim massa, in tempor neque iaculis nec. Quisque
-        tempor nisl in erat consequat, nec ornare elit porttitor.
-      </p>
+    <div id="start" class="container is-fluid">
+      <div class="row">
+      <h3 class="subtitle is-3">Coding Quiz</h3>
+    </div><br/>
+    <div class="row">
+      <p>You will have 75 seconds to complete this quiz. Each incorrect answer subtracts 5 seconds from your time. Your time at the completion of the quiz will be your score.</p>
+    </div><br />
+    <div class="row">
+    <button id="btnStart" type="button" class="btn btn-success">Start Quiz</button>
+    </div><br/>
+  </div>
+
+    <div id="quiz" class="container is-fluid">
+      <h3 id="question" class="subtitle is-3">QUESTION PLACEHOLDER</h3>
+      <br/>
+      <div class="row align-middle">
+        <div id="res1" class="response">
+          <button id="btn1" type="button" class="btn btnAnswer mr-2">A</button>
+          <div id="ans1" class="answer">ANSWER A PLACEHOLDER</div>
+        </div>
+      </div>
+      <br />
+
+      <div class="row align-middle">
+        <div id="res2" class="response">
+          <button id="btn2" type="button" class="btn btnAnswer mr-2">B</button>
+          <div id="ans2" class="answer">ANSWER B PLACEHOLDER</div>
+        </div>
+      </div>
+      <br />
+
+      <div class="row align-middle">
+        <div id="res3" class="response">
+          <button id="btn3" type="button" class="btn btnAnswer mr-2">C</button>
+          <div id="ans3" class="answer">ANSWER C PLACEHOLDER</div>
+        </div>
+      </div>
+      <br />
+
+      <div class="row align-middle">
+        <div id="res4" class="response">
+          <button id="btn4" type="button" class="btn btnAnswer mr-2">D</button>
+          <div id="ans4" class="answer">ANSWER D PLACEHOLDER</div>
+        </div>
+      </div>
+      <br />
+
+      <div class="row align-middle">
+        <div id="rightwrong"></div>
+      </div>
     </div>
-    <br />
-    <div class="container is-fluid">
-      <button id="btnStart" type="button" class="btn btn-success">
-        Start Quiz
-      </button>
-      <button id="btn1" type="button" class="btn response">
-        button 1
-      </button>
-      <br />
-      <button id="btn2" type="button" class="btn response">
-        button 2
-      </button>
-      <br />
-      <button id="btn3" type="button" class="btn response">
-        button 3
-      </button>
-      <br />
-      <button id="btn4" type="button" class="btn response">
-        button 4
-      </button>
+    <div id="finish" class="container is-fluid">
+      <div class="row">
+        <h3 id="finalScore" class="subtitle is-3">SCORE PLACEHOLDER</h3>
+      </div><br/>
+      <form id="intialsForm" class="form-inline">
+          <div class="form-group mr-2">
+            <label for="initials">Enter your initials:</label>
+          </div>
+          <div class="form-group mr-2">
+            <input
+              type="text"
+              class="form-control"
+              id="intialsInput"
+              width="150px"
+            />
+          </div>
+          <div class="form-group">
+            <button id="intialsSubmit" type="submit" class="btn btn-primary">OK</button>
+          </div>
+      </form><br/>
+      <iframe src="https://giphy.com/embed/NfKG1sbpUrYjK" width="480" height="339" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/twin-peaks-david-lynch-NfKG1sbpUrYjK">via GIPHY</a></p>
     </div>
+    </div>
+
+    <div id="scores" class="container is-fluid">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Initials</th>
+            <th scope="col">Score</th>
+            </tr>
+            </thead>
+            <tbody id="scoreBody">
+
+            </tbody>
+            </table>
+    </div>
+
     <script src="./assets/script.js"></script>
   </body>
 </html>

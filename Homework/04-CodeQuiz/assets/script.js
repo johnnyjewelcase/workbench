@@ -1,101 +1,237 @@
-// You will need to use `setInterval` for the timer.
-// You will need to use `localStorage`. What is the part of app that needs to persist?
-// You will need use event delegation.
-// The Week 4 ToDo's application (`28-Stu_Local-Storage-Todos`) has examples of `localStorage` and event delegation.
+// Grab all the page elements that we'll need
 var body = document.querySelector('body');
-var timerEl = document.querySelector('#timer');
-var qText = document.querySelector('#qText');
-var introP = document.querySelector('#introP');
-var responses = document.querySelectorAll('.response');
+var elStart = document.querySelector('#start');
+var elQuiz = document.querySelector('#quiz');
+var elFinish = document.querySelector('#finish');
+var elScores = document.querySelector('#scores');
+var elSwitch = document.querySelector('#switch');
+var elTimer = document.querySelector('#timer');
+var elQuestion = document.querySelector('#question');
+var elsResponse = document.querySelectorAll('.response');
 var btnStart = document.querySelector('#btnStart');
-var btn1 = document.querySelector('#btn1');
+var elCheck = document.querySelector('#rightwrong');
+var elAns1 = document.querySelector('#ans1');
+var elAns2 = document.querySelector('#ans2');
+var elAns3 = document.querySelector('#ans3');
+var elAns4 = document.querySelector('#ans4');
+var elFinalScore = document.querySelector('#finalScore');
+var elForm = document.querySelector('#intialsForm');
+var elInitials = document.querySelector('#intialsInput');
+var elSubmit = document.querySelector('#intialsSubmit');
+var elScoreBody = document.querySelector('#scoreBody');
 
+// Store text required for each 'page' of the quiz in an object.
 var q1 = {
-    question: 'Coding Quiz'
+    question: 'What is the HTML tag under which one can write the JavaScript code?',
+    ans1: '<code>&ltjavascript&gt</code>',
+    ans2: '<code>&ltscripted&gt</code>',
+    ans3: '<code>&ltscript&gt</code>',
+    ans4: '<code>&ltjs&gt</code>',
+    correct: 'res3'
 };
 var q2 = {
-    question: 'What is the HTML tag under which one can write the JavaScript code?',
-    btn1: '<javascript>',
-    btn2: '<scripted>',
-    btn3: '<script>',
-    btn4: '<js>',
-    answer: 'btn3'
-};
-var q3 = {
     question: 'Choose the correct JavaScript syntax to change the content of the following HTML code:<br \> &lt;p id=\'geek\'&gt;GeeksforGeeks&lt;/p&gt;',
-    btn1: 'document.getElement(“geek”).innerHTML=”I am a Geek”;',
-    btn2: 'document.getElementById(“geek”).innerHTML=”I am a Geek”;',
-    btn3: 'document.getId(“geek”)=”I am a Geek”;',
-    btn4: ' document.getElementById(“geek”).innerHTML=I am a Geek;',
-    answer: 'btn2'
+    ans1: '<code>document.getElement(“geek”).innerHTML=”I am a Geek”;</code>',
+    ans2: '<code>document.getElementById(“geek”).innerHTML=”I am a Geek”;</code>',
+    ans3: '<code>document.getId(“geek”)=”I am a Geek”;</code>',
+    ans4: '<code>document.getElementById(“geek”).innerHTML=I am a Geek;</code>',
+    correct: 'res2'
 };
 
+// Store each 'page' object in an array; initialize the page counter.
 var quiz = [];
-quiz.push(q1, q2, q3);
-var q = 0;
+quiz.push(q1, q2);
+var q = -1;
 
+// Inititalize quiz duration and time interval in a variable
+var timeLeft;
+var timeInterval;
+var initials;
+var score;
+
+// Create a function to reset the quiz back to start.
+var state = 'start';
+
+function startPage() {
+    elStart.style.display = 'block';
+    elQuiz.style.display = 'none';
+    elTimer.style.display = 'none';
+    elFinish.style.display = 'none';
+    elScores.style.display = 'none';
+    elSwitch.textContent = 'View the Scoreboard';
+    q = -1;
+    clearInterval(timeInterval);
+    timeLeft = 5;
+    score = -1;
+    initials = '';
+    state = 'start';
+}
+startPage();
+
+// Initialize scoreboard
+var scoreboard = [];
+localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
+
+// Create a function to stop the timer and clear related variables & text, to be called when the user runs out of questions or time.
+function stopTimer() {
+    console.log('stopping timer');
+    clearInterval(timeInterval);
+    timeLeft = 0;
+    elTimer.textContent = '';
+}
+
+// Create a function to operate the timer, to be called at the beginning of the quiz.
 function countDown() {
-    var timeLeft = 3;
-
-    var timeInterval = setInterval(function () {
-        timerEl.textContent = timeLeft + " seconds remaining";
+    console.log('counting down');
+    elTimer.style.display = 'inline';
+    timeInterval = setInterval(function () {
+        elTimer.textContent = timeLeft + ' seconds remaining';
         timeLeft--;
 
-        if (timeLeft === 0) {
-            localStorage.setItem("timeLeft", timeLeft);
-            timerEl.textContent = "";
+        if (timeLeft <= 0) {
+            timeLeft = 0;
             completeQuiz();
-            clearInterval(timeInterval);
         }
-
     }, 1000);
 }
 
+// Add listener for user clicking the start button.
 btnStart.addEventListener('click', function () {
-    introP.style.display = 'none';
-    this.style.display = 'none';
-    for (i = 0; i < responses.length; i++) {
-        responses[i].style.display = 'flex';
-    }
+    console.log('clicking start');
+    countDown();
     nextQuestion();
-    // countDown();
+    elStart.style.display = 'none';
+    elQuiz.style.display = 'block';
+    elFinish.style.display = 'none';
+    elScores.style.display = 'none';
+    elSwitch.textContent = 'Start Over';
+    state = 'quiz';
 });
 
-body.addEventListener('click', function () {
-    if (event.target.className !== 'btn response') {
-        return;
-    }
-    checkAnswer(event.target.id);
-    nextQuestion();
-});
-
-function checkAnswer(choice) {
-    if (choice == quiz[q].answer) {
-        alert("yep");
-    } else {
-        alert("nope");
-    }
+// Define what happens when we run out of questions or time.
+function completeQuiz() {
+    console.log('ending the quiz');
+    score = timeLeft;
+    stopTimer();
+    elInitials.value = '';
+    elStart.style.display = 'none';
+    elQuiz.style.display = 'none';
+    elTimer.style.display = 'none';
+    elFinish.style.display = 'block';
+    elScores.style.display = 'none';
+    elSwitch.textContent = 'Retake the Quiz';
+    state = 'finish';
+    elFinalScore.innerHTML = 'Quiz Complete! Your final score is ' + score + '.';
 }
 
+// Add listener to all 'response' buttons to wait for user selection.
+body.addEventListener('click', function () {
+    if (event.target.parentNode.className !== 'response') {
+        return;
+    }
+    console.log('clicked ' + event.target.parentNode.className);
+    checkAnswer(event.target.parentNode.id);
+});
+
+// Compare the selected answer with the correct answer in the array.
+function checkAnswer(choice) {
+    var correct = quiz[q].correct;
+    console.log('checking answer: is ' + choice + ' === ' + correct);
+    if (choice === correct) {
+        console.log('right');
+        elCheck.style.color = 'green';
+        elCheck.innerHTML = 'Correct!';
+    } else {
+        console.log('bzzt wrongo');
+        elCheck.style.color = 'red';
+        elCheck.innerHTML = 'Incorrect!';
+        timeLeft -= 5;
+    }
+
+    // Let the user know whether they chose the correct answer.
+    setTimeout(function () {
+        elCheck.innerHTML = '';
+        nextQuestion();
+    }, 500);
+}
+
+// Move to the next object in the quiz array and populate the page with the new text. 
 function nextQuestion() {
+    console.log('next question');
     q++;
     if (q < quiz.length) {
-        qText.innerHTML = quiz[q].question;
-        btn1.textContent = quiz[q].btn1;
-        btn2.textContent = quiz[q].btn2;
-        btn3.textContent = quiz[q].btn3;
-        btn4.textContent = quiz[q].btn4;
+        elQuestion.innerHTML = quiz[q].question;
+        elAns1.innerHTML = quiz[q].ans1;
+        elAns2.innerHTML = quiz[q].ans2;
+        elAns3.innerHTML = quiz[q].ans3;
+        elAns4.innerHTML = quiz[q].ans4;
     } else {
         completeQuiz();
     }
 }
 
-function completeQuiz() {
-    // event.preventDefault();
-    var score = localStorage.getItem("timeLeft");
-    qText.innerHTML = "QUIZ COMPLETE " + score;
-    for (i = 0; i < responses.length; i++) {
-        responses[i].style.display = 'none';
+// Add listener for user submitting their initials.
+elForm.addEventListener('submit', function () {
+    console.log('submitting score');
+    event.preventDefault();
+    initials = elInitials.value;
+    scoreboard = JSON.parse(localStorage.getItem('scoreboard'));
+
+    var results = {
+        initials: initials,
+        score: score
+    };
+    scoreboard.push(results);
+    localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
+    displayScores();
+});
+
+// Display the scoreboard.
+function displayScores() {
+    // Get the scores back out of localstorage.
+    console.log('displaying scoreboard');
+    scoreboard = JSON.parse(localStorage.getItem('scoreboard'));
+
+    // Empty the scoreboard.
+    for (i = elScoreBody.rows.length; i > 0; i--) {
+        elScoreBody.deleteRow(i - 1);
     }
 
+    var foundMe = false;
+    // Populate the scoreboard from the object retrieved from localstorage.
+    for (i = 0; i < scoreboard.length; i++) {
+        console.log('looping through scores');
+        var row = elScoreBody.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = scoreboard[i].initials;
+        cell2.innerHTML = scoreboard[i].score;
+
+        // Highlight the row with the most recent score.
+        if (scoreboard[i].initials === initials && scoreboard[i].score === score && foundMe === false) {
+            console.log('found me');
+            foundMe = true;
+            cell1.style.backgroundColor = 'yellow';
+            cell2.style.backgroundColor = 'yellow';
+        }
+    }
+
+
+    elStart.style.display = 'none';
+    elQuiz.style.display = 'none';
+    elTimer.style.display = 'none';
+    elFinish.style.display = 'none';
+    elScores.style.display = 'block';
+    elSwitch.innerHTML = 'Take the Quiz';
+    state = 'scores';
 }
+
+elSwitch.addEventListener('click', function () {
+    console.log('switched screens');
+    if (state === 'start') {
+        displayScores();
+    } else {
+        console.log('start over');
+        startPage();
+    }
+});

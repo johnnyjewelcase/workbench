@@ -1,24 +1,4 @@
-.navbar-end {
-    padding: 10px;
-}
-
-.response {
+.btnAnswer {
     background-color: purple;
     color: white;
-}
-
-#btn1 {
-    display: none
-}
-
-#btn2 {
-    display: none
-}
-
-#btn3 {
-    display: none
-}
-
-#btn4 {
-    display: none
 }
