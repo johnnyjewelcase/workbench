@@ -22,7 +22,7 @@ var elScoreBody = document.querySelector('#scoreBody');
 
 // Store text required for each 'page' of the quiz in an object.
 var q1 = {
-    question: 'What is the HTML tag under which one can write the JavaScript code?',
+    question: '#1 What is the HTML tag under which one can write the JavaScript code?',
     ans1: '<code>&ltjavascript&gt</code>',
     ans2: '<code>&ltscripted&gt</code>',
     ans3: '<code>&ltscript&gt</code>',
@@ -30,17 +30,44 @@ var q1 = {
     correct: 'res3'
 };
 var q2 = {
-    question: 'Choose the correct JavaScript syntax to change the content of the following HTML code:<br \> &lt;p id=\'geek\'&gt;GeeksforGeeks&lt;/p&gt;',
-    ans1: '<code>document.getElement(“geek”).innerHTML=”I am a Geek”;</code>',
-    ans2: '<code>document.getElementById(“geek”).innerHTML=”I am a Geek”;</code>',
-    ans3: '<code>document.getId(“geek”)=”I am a Geek”;</code>',
-    ans4: '<code>document.getElementById(“geek”).innerHTML=I am a Geek;</code>',
+    question: '#2 Choose the correct JavaScript syntax to change the content of the following HTML code:<br \> &lt;p id=\'msgBox\'&gt;Message Placeholder&lt;/p&gt;',
+    ans1: '<code>document.getElement(msgBox).innerHTML="Hello World!";</code>',
+    ans2: '<code>document.getElementById("msgBox").innerHTML="Hello World!";</code>',
+    ans3: '<code>document.getId("msgBox")="Hello World!";</code>',
+    ans4: '<code>document.getElementById("msgBox").innerHTML=Hello World!;</code>',
     correct: 'res2'
+};
+
+var q3 = {
+    question: '#3 Which of the following is the correct syntax to display "Hello World!" in an alert box using JavaScript?',
+    ans1: '<code>alertbox("Hello World!");</code>',
+    ans2: '<code>msg("Hello World!");</code>',
+    ans3: '<code>msgbox("Hello World!");</code>',
+    ans4: '<code>alert("Hello World!");</code>',
+    correct: 'res4'
+};
+
+var q4 = {
+    question: '#4 What is the correct syntax for referring to an external script called "script.js"',
+    ans1: '<code>&lt;script src="script.js"&gt;</code>',
+    ans2: '<code>&lt;script href="script.js"&gt;</code>',
+    ans3: '<code>&lt;script ref="script.js"&gt;</code>',
+    ans4: '<code>&lt;script name="script.js"&gt;</code>',
+    correct: 'res1'
+};
+
+var q5 = {
+    question: '#5 Predict the output of the following JavaScript code:<br \> &lt;script type="text/javascript"&gt;<br />a = 8 + "8";<br />document.write(a); &lt;/script&gt;',
+    ans1: '16',
+    ans2: 'Complilation Error',
+    ans3: '88',
+    ans4: 'Run Time Error',
+    correct: 'res3'
 };
 
 // Store each 'page' object in an array; initialize the page counter.
 var quiz = [];
-quiz.push(q1, q2);
+quiz.push(q1, q2, q3, q4, q5);
 var q = -1;
 
 // Inititalize quiz duration and time interval in a variable
@@ -61,7 +88,7 @@ function startPage() {
     elSwitch.textContent = 'View the Scoreboard';
     q = -1;
     clearInterval(timeInterval);
-    timeLeft = 5;
+    timeLeft = 45;
     score = -1;
     initials = '';
     state = 'start';
@@ -72,14 +99,6 @@ startPage();
 var scoreboard = [];
 localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
 
-// Create a function to stop the timer and clear related variables & text, to be called when the user runs out of questions or time.
-function stopTimer() {
-    console.log('stopping timer');
-    clearInterval(timeInterval);
-    timeLeft = 0;
-    elTimer.textContent = '';
-}
-
 // Create a function to operate the timer, to be called at the beginning of the quiz.
 function countDown() {
     console.log('counting down');
@@ -89,7 +108,6 @@ function countDown() {
         timeLeft--;
 
         if (timeLeft <= 0) {
-            timeLeft = 0;
             completeQuiz();
         }
     }, 1000);
@@ -111,8 +129,12 @@ btnStart.addEventListener('click', function () {
 // Define what happens when we run out of questions or time.
 function completeQuiz() {
     console.log('ending the quiz');
-    score = timeLeft;
-    stopTimer();
+    clearInterval(timeInterval);
+    if (timeLeft < 0) {
+        score = 0;
+    } else {
+        score = timeLeft;
+    }
     elInitials.value = '';
     elStart.style.display = 'none';
     elQuiz.style.display = 'none';
@@ -140,11 +162,11 @@ function checkAnswer(choice) {
     if (choice === correct) {
         console.log('right');
         elCheck.style.color = 'green';
-        elCheck.innerHTML = 'Correct!';
+        elCheck.innerHTML = '<strong>Correct!</strong>';
     } else {
         console.log('bzzt wrongo');
         elCheck.style.color = 'red';
-        elCheck.innerHTML = 'Incorrect!';
+        elCheck.innerHTML = '<strong>Incorrect!</strong>';
         timeLeft -= 5;
     }
 
@@ -152,7 +174,7 @@ function checkAnswer(choice) {
     setTimeout(function () {
         elCheck.innerHTML = '';
         nextQuestion();
-    }, 500);
+    }, 1000);
 }
 
 // Move to the next object in the quiz array and populate the page with the new text. 
