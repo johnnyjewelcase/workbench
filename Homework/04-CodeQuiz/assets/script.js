@@ -109,6 +109,8 @@ function countDown() {
     console.log('counting down');
     elTimer.style.display = 'inline';
     elProgress.style.color = 'black';
+    elProgress.classList.remove("bg-warning");
+    elProgress.classList.remove("bg-danger");
     elProgress.classList.add("bg-success");
 
     timeInterval = setInterval(function () {
