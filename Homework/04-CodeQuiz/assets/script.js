@@ -6,6 +6,7 @@ var elFinish = document.querySelector('#finish');
 var elScores = document.querySelector('#scores');
 var elSwitch = document.querySelector('#switch');
 var elTimer = document.querySelector('#timer');
+var elProgress = document.querySelector('#progressBar');
 var elQuestion = document.querySelector('#question');
 var elsResponse = document.querySelectorAll('.response');
 var btnStart = document.querySelector('#btnStart');
@@ -103,9 +104,22 @@ localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
 function countDown() {
     console.log('counting down');
     elTimer.style.display = 'inline';
+    elProgress.style.color = 'black';
+    elProgress.classList.add("bg-success");
+
     timeInterval = setInterval(function () {
-        elTimer.textContent = timeLeft + ' seconds remaining';
         timeLeft--;
+        elProgress.textContent = timeLeft + ' seconds left';
+        elProgress.style.width = ((timeLeft / 45) * 100) + 1 + '%';
+        if (timeLeft <= 30 && timeLeft > 10) {
+            elProgress.classList.remove("bg-success");
+            elProgress.classList.add("bg-warning");
+        }
+
+        if (timeLeft <= 10) {
+            elProgress.classList.remove("bg-warning");
+            elProgress.classList.add("bg-danger");
+        }
 
         if (timeLeft <= 0) {
             completeQuiz();
