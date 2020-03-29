@@ -38,7 +38,7 @@ The countdown function is constantly checking to see the remaining time has pass
 
 #### THEN I can save my initials and score
 
-The **finish** div reports the remaining time to the user as their score and tells the user how many questions were answered correctly. The user is shownn a form so that they can provide their initials for scorekeeping purposes. Upon submitting their initials, the **finish** div is hidden, and the **scoreboard** div is displayed, with the row containing the user's initials and score highlighted to show how they compared to other scores.
+The **finish** div reports the remaining time to the user as their score and tells the user how many questions were answered correctly. The user is shownn a form so that they can provide their initials for scorekeeping purposes. Upon submitting their initials, the **finish** div is hidden, and the **scoreboard** div is displayed, with the row containing the user's initials and score highlighted to show how they compared to other scores. The score is stored in another object array, which is kept as a string in localstorage for safekeeping.
 
 #### ALSO
 
