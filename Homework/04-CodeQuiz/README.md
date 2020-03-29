@@ -26,7 +26,7 @@ Clicking an answer iterates further into the array, replacing the text for the q
 
 #### THEN time is subtracted from the clock
 
-Clicking an answer also passes the ID of the clicked response to a function that compares it to the correct response ID as stored in the current question object. If these do not match, 5 seconds are subtracted from the current time.
+Clicking an answer also passes the ID of the clicked response to a function that compares it to the correct response ID as stored in the current question object. If these do not match, 5 seconds are subtracted from the current time. If the answer is correct, a separate scorekeeping variable is iterated.
 
 #### WHEN all questions are answered or the timer reaches 0
 
