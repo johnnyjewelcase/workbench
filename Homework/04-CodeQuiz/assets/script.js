@@ -8,7 +8,7 @@ var elSwitch = document.querySelector('#switch');
 var elTimer = document.querySelector('#timer');
 var elProgress = document.querySelector('#progressBar');
 var elQuestion = document.querySelector('#question');
-var elsResponse = document.querySelectorAll('.response');
+// var elsResponse = document.querySelectorAll('.response');
 var btnStart = document.querySelector('#btnStart');
 var elCheck = document.querySelector('#rightwrong');
 var elAns1 = document.querySelector('#ans1');
@@ -18,7 +18,6 @@ var elAns4 = document.querySelector('#ans4');
 var elFinalScore = document.querySelector('#finalScore');
 var elForm = document.querySelector('#intialsForm');
 var elInitials = document.querySelector('#intialsInput');
-var elSubmit = document.querySelector('#intialsSubmit');
 var elScoreBody = document.querySelector('#scoreBody');
 
 // Store text required for each 'page' of the quiz in an object.
@@ -31,7 +30,7 @@ var q1 = {
     correct: 'res3'
 };
 var q2 = {
-    question: '#2 Choose the correct JavaScript syntax to change the content of the following HTML code:<br \> &lt;p id=\'msgBox\'&gt;Message Placeholder&lt;/p&gt;',
+    question: '#2 Choose the correct JavaScript syntax to change the content of the following HTML code:&nbsp;<code>&lt;p id=\'msgBox\'&gt;Message Placeholder&lt;/p&gt;</code>',
     ans1: '<code>document.getElement(msgBox).innerHTML="Hello World!";</code>',
     ans2: '<code>document.getElementById("msgBox").innerHTML="Hello World!";</code>',
     ans3: '<code>document.getId("msgBox")="Hello World!";</code>',
@@ -58,7 +57,7 @@ var q4 = {
 };
 
 var q5 = {
-    question: '#5 Predict the output of the following JavaScript code:<br \> &lt;script type="text/javascript"&gt;<br />a = 8 + "8";<br />document.write(a); &lt;/script&gt;',
+    question: '#5 Predict the output of the following JavaScript code:<br \><code>&lt;script type="text/javascript"&gt;<br />a = 8 + "8";<br />document.write(a); &lt;/script&gt;</code>',
     ans1: '16',
     ans2: 'Complilation Error',
     ans3: '88',
@@ -109,6 +108,8 @@ function countDown() {
     console.log('counting down');
     elTimer.style.display = 'inline';
     elProgress.style.color = 'black';
+    elProgress.textContent = '45 seconds left';
+    elProgress.style.width = '100%';
     elProgress.classList.remove("bg-warning");
     elProgress.classList.remove("bg-danger");
     elProgress.classList.add("bg-success");

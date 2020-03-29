@@ -1,4 +1,9 @@
 .btnAnswer {
     background-color: purple;
     color: white;
+    display: inline;
+}
+
+.answer {
+    display: inline;
 }
