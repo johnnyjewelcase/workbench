@@ -190,11 +190,11 @@ function checkAnswer(choice) {
         elCheck.innerHTML = '<strong>Incorrect!</strong>';
         timeLeft -= 5;
     }
+    nextQuestion();
 
     // Let the user know whether they chose the correct answer.
     setTimeout(function () {
         elCheck.innerHTML = '';
-        nextQuestion();
     }, 1000);
 }
 
