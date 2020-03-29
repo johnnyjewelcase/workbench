@@ -90,6 +90,11 @@ var initials;
 var score;
 var rightAnswers;
 var scoreboard = [];
+var results = {
+  initials: "",
+  score: ""
+};
+scoreboard.push(results);
 localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
 
 // Create a function to reset the quiz back to start.
@@ -258,11 +263,13 @@ function displayScores() {
   // Populate the scoreboard from the object retrieved from localstorage.
   for (i = 0; i < scoreboard.length; i++) {
     console.log("looping through scores");
-    var row = elScoreBody.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = scoreboard[i].initials;
-    cell2.innerHTML = scoreboard[i].score;
+    if (scoreboard[i].score !== "") {
+      var row = elScoreBody.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = scoreboard[i].initials;
+      cell2.innerHTML = scoreboard[i].score;
+    }
 
     // Highlight the row with the most recent score.
     if (
