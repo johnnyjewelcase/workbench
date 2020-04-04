@@ -6,31 +6,22 @@ $(document).ready(function () {
   // Find out what time it is so that rows can be colored as specified.
   var currentHour = moment().format("k");
 
-  // starting with a dummy array
-  // var events = [
-  //   {
-  //     time: 8,
-  //     event: "8am test",
-  //   },
-  //   {
-  //     time: 10,
-  //     event: "10am test",
-  //   },
-  // ];
-
   // Create an array to store objects representing calendar events.
+  // Seed events array with an unused row to make life a little easier.
   var events = [
     {
-      time: 50,
+      time: 500,
       event: "",
     },
   ];
+
+  // I need a global variable for event handlers to share.
+  var txt;
 
   // Populate the event array from localstorage, if there's anything in localstorage.
   if (localStorage.getItem("calendar") !== null) {
     events = JSON.parse(localStorage.getItem("calendar"));
   }
-  console.log(localStorage.getItem("calendar"));
   console.log(events);
 
   // Loop through all the hours in the workday.
@@ -55,11 +46,11 @@ $(document).ready(function () {
 
     // Display the time appropriately.
     if (hours[i] < 12) {
-      tdHour.html(hours[i] + " AM");
+      tdHour.text(hours[i] + " AM");
     } else if (hours[i] > 12) {
-      tdHour.html(hours[i] - 12 + " PM");
+      tdHour.text(hours[i] - 12 + " PM");
     } else {
-      tdHour.html("12 PM");
+      tdHour.text("12 PM");
     }
 
     // Format the color of the row according to its time relative to the current time.
@@ -85,15 +76,15 @@ $(document).ready(function () {
 
   // Listen for clicks on the event area.
   $(".event").click(function () {
-    var txt = $(this).text();
+    txt = $(this).text();
     if ($(this).hasClass("past")) {
       $(this)
-        .html("You can't create events in the past!")
+        .text("You can't create events in the past!")
         .css("color", "red")
         .addClass("error");
 
       setTimeout(function () {
-        txt = $(".error").html(txt).css("color", "white");
+        txt = $(".error").text(txt).css("color", "white");
       }, 1000);
     } else {
       $("textarea").remove();
@@ -104,18 +95,30 @@ $(document).ready(function () {
     }
   });
 
+  // $(".event").on("focusout", function () {
+  //   $(this).text(txt);
+  // });
+
   // Listen for clicks on the save button.
   $(".saveBtn").click(function () {
     var eventText = $("textarea").val();
-    $(this).prev().html(eventText);
+    var eventHour = parseInt($(this).attr("hour"));
+
+    $(this).prev().text(eventText);
+
+    for (j = 0; j < events.length; j++) {
+      if (events[j].time === eventHour) {
+        events.splice(j, 1);
+      }
+    }
+
     var eventObj = {
-      time: parseInt($(this).attr("hour")),
+      time: eventHour,
       event: eventText,
     };
     events.push(eventObj);
     localStorage.setItem("calendar", JSON.stringify(events));
     console.log(events);
-    console.log(localStorage.getItem("calendar"));
   });
 });
 
