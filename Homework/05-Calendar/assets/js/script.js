@@ -130,10 +130,17 @@ $(document).ready(function () {
   });
 
   // Listen for clicks on the save button.
+
   $(".saveBtn").click(function () {
     // Grab the text that the user just intered and make a note of which time/row that we're on.
-    var eventText = $("textarea").val();
+    var eventText = $(this).prev().children().val();
     var eventHour = parseInt($(this).attr("hour"));
+
+    // Make sure that the user clicked the save button next to the text being entered and escape from this click if not.
+    if (eventText === undefined) {
+      console.log("wrong save button");
+      return;
+    }
 
     // Get rid of the text input and replace it with the user-supplied text.
     $("textarea").remove();
