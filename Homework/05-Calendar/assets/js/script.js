@@ -50,7 +50,7 @@ $(document).ready(function () {
     var tr = $("<tr class='row'>");
     // Create a cell to display the time that this row represents.
     var tdHour = $("<td class='col-2 hour'>");
-    // Create a cell to store the event.
+    // Create a cell to store the event description.
     var tdEvent = $("<td class='col-9 event'>");
     // Create a cell for the save icon.
     var tdSave = $("<td class='col-1 saveBtn'>")
@@ -83,7 +83,7 @@ $(document).ready(function () {
     }
 
     // Loop through the events array, looking for a saved event with
-    // a time property that matches the currently selected by the loop.
+    // a time property that matches that of the current row.
     if (events != undefined) {
       for (j = 0; j < events.length; j++) {
         if (events[j].time === hours[i]) {
@@ -132,7 +132,7 @@ $(document).ready(function () {
   // Listen for clicks on the save button.
 
   $(".saveBtn").click(function () {
-    // Grab the text that the user just intered and make a note of which time/row that we're on.
+    // Grab the text that the user just entered and make a note of which time/row that we're on.
     var eventText = $(this).prev().children().val();
     var eventHour = parseInt($(this).attr("hour"));
 
@@ -145,6 +145,11 @@ $(document).ready(function () {
     // Get rid of the text input and replace it with the user-supplied text.
     $("textarea").remove();
     $(this).prev().text(eventText);
+    // Create an object to hold the newly-created event.
+    var eventObj = {
+      time: eventHour,
+      event: eventText,
+    };
 
     // Check whether we already have any events saved.
     if (events != undefined) {
@@ -156,12 +161,6 @@ $(document).ready(function () {
         }
       }
     }
-
-    // Create an object to hold the newly-created event.
-    var eventObj = {
-      time: eventHour,
-      event: eventText,
-    };
 
     // If we already have any events in the array, push the new one into the array.
     // If not, initialize the array with this new object.
