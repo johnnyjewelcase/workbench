@@ -23,6 +23,64 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-text">
+        Weather Dashboard
+      </span>
+    </nav>
+    <div id="divContent" class="container-fluid d-inline-flex mt-3">
+      <div id="divSelector" class="col-3 bg-light">
+        <h5>Search for a City:</h5>
+        <div id="formSearch" class="form-group">
+          <div class="input-group">
+            <input
+              type="text"
+              id="inputCity"
+              class="form-control"
+              aria-label="City"
+              aria-describedby="button-addon"
+            />
+            <div class="input-group-append">
+              <button
+                id="btnSearch"
+                class="btn btn-info"
+                type="button"
+                id="button-addon"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <ul id="listCities" class="list-group mt-2"></ul>
+      </div>
+
+      <div id="divResults" class="col-9">
+        <div id="rowWeather" class="row p-1 border border-secondary rounded">
+          <div class="col">
+            <h4 id="divCityDateIcon">
+              <span id="city"> </span>&nbsp;(<span id="date"> </span>)
+              <img id="icon" />
+            </h4>
+            <p>Temperature:&nbsp;<span id="temp"> </span>°F</p>
+            <p>Humidity:&nbsp;<span id="humid"> </span>%</p>
+            <p>Wind Speed:&nbsp;<span id="wind"> </span>&nbsp;mph</p>
+            <p>UV Index:&nbsp;<span id="btnUV" class="badge"></span></p>
+          </div>
+        </div>
+
+        <div
+          id="rowForecast"
+          class="row mt-1 p-1 border border-secondary rounded"
+        >
+          <div class="col-12">
+            <h4 id="crdTitle">5-Day Forecast</h4>
+            <div id="crdGroup" class="card-deck"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>

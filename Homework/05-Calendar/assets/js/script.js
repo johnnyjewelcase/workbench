@@ -157,10 +157,10 @@ $(document).ready(function () {
     // Store the event description in a global variable to make sure that it overwrites any previous event at this time.
     txt = eventText;
   });
-});
 
-// Make the clear button delete local storage AND the events on the screen.
-$("#clearBtn").click(function () {
-  localStorage.clear();
-  $(".event").empty();
+  // Make the clear button delete local storage AND the events on the screen.
+  $("#clearBtn").click(function () {
+    localStorage.clear();
+    $(".event").empty();
+  });
 });
