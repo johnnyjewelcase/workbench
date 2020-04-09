@@ -1,11 +1,41 @@
 // TO DO
-// move li append to cityLookup, use $("#city").html(response.name) instead of the user entry, make sure it only appends if the city's not there
-// get the enter key to work on the search
+//
+// add state / country to li?
+// add delete button to li?
+// add current temp to li?
+//
 $(document).ready(function () {
+  // Hide the results until there's something to show.
   $("#divResults").hide();
+  // Stash my API key for use in multiple calls
   var apiKey = "5e0cb360a3e279b747dc9a93720d69ed";
+  // localStorage.clear();
+
+  // Create a global array to store all the cities that the user has searched for.
+  var cities;
+  // Populate the cities array from localstorage, if there's anything in localstorage.
+  if (localStorage.getItem("cities") !== null) {
+    cities = JSON.parse(localStorage.getItem("cities"));
+  }
+
+  populateCities();
+
+  function populateCities() {
+    $("#listCities").empty();
+    if (cities !== undefined) {
+      for (i = 0; i < cities.length; i++) {
+        var newCity = $("<li>")
+          .addClass("list-group-item btnCity")
+          .attr("city", cities[i])
+          .html(cities[i]);
+        $("#listCities").prepend(newCity);
+      }
+    }
+  }
 
   function cityLookup(searchTerm) {
+    $("#divResults").hide();
+    $("#inputCity").val("");
     var locQueryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       searchTerm +
@@ -15,21 +45,44 @@ $(document).ready(function () {
     $.ajax({
       url: locQueryURL,
       method: "GET",
-    }).then(function (response) {
-      console.log(response);
-      $("#city").html(response.name);
+    })
+      .then(function (response) {
+        var city = response.name;
+        $("#city").html(city);
+        if (cities !== undefined) {
+          var alreadyThere = false;
+          for (i = 0; i < cities.length; i++) {
+            if (city === cities[i]) {
+              alreadyThere = true;
+            }
+          }
+          if (alreadyThere === false) {
+            cities.push(city);
+            localStorage.setItem("cities", JSON.stringify(cities));
+          }
+        } else {
+          cities = [response.name];
+        }
+        populateCities();
 
-      var queryURL =
-        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-        response.coord.lat +
-        "&lon=" +
-        response.coord.lon +
-        "&appid=" +
-        apiKey +
-        "&units=imperial";
+        var queryURL =
+          "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+          response.coord.lat +
+          "&lon=" +
+          response.coord.lon +
+          "&appid=" +
+          apiKey +
+          "&units=imperial";
 
-      getWeather(queryURL);
-    });
+        getWeather(queryURL);
+      })
+      .fail(function () {
+        $("#inputCity").val("Invalid city!").css("color", "red");
+
+        setTimeout(function () {
+          $("#inputCity").val("").css("color", "black");
+        }, 1000);
+      });
   }
 
   function getWeather(weatherUrl) {
@@ -37,7 +90,6 @@ $(document).ready(function () {
       url: weatherUrl,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
       $("#date").html(dateUnixToText(response.current.dt));
       $("#icon").attr(
         "src",
@@ -122,18 +174,18 @@ $(document).ready(function () {
 
   $("#btnSearch").click(function () {
     var city = $("#inputCity").val();
-    $("#divResults").hide();
     cityLookup(city);
-    var newCity = $("<li>")
-      .addClass("list-group-item btnCity")
-      .attr("city", city)
-      .html(city);
-    $("#listCities").prepend(newCity);
   });
 
   $("#listCities").click(function (event) {
     var city = $(event.target).attr("city");
-    $("#divResults").hide();
     cityLookup(city);
+  });
+
+  $("#inputCity").keyup(function (event) {
+    if (event.keyCode === 13) {
+      var city = $("#inputCity").val();
+      cityLookup(city);
+    }
   });
 });
