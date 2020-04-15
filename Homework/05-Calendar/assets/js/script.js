@@ -6,7 +6,8 @@ $(document).ready(function () {
   var currentHour = moment().format("k");
 
   // Create an array of hours in the workday.
-  var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+  // var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+  var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
   // Create a global array to store objects representing calendar events.
   var events;
@@ -159,8 +160,8 @@ $(document).ready(function () {
   });
 
   // Make the clear button delete local storage AND the events on the screen.
-  $("#clearBtn").click(function () {
-    localStorage.clear();
-    $(".event").empty();
-  });
+  // $("#clearBtn").click(function () {
+  //   localStorage.clear();
+  //   $(".event").empty();
+  // });
 });
